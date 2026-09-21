@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UTS PKK Kelas XII - SMK Binakarya Mandiri</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    body { font-family: 'Inter', sans-serif; user-select: none; }
+    .unselectable { -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 min-h-screen flex flex-col unselectable">
+
+  <!-- Header Banner -->
+  <header class="bg-blue-900 text-white shadow-md sticky top-0 z-30">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+      <div class="flex items-center space-x-3">
+        <div class="bg-white text-blue-900 p-2 rounded-lg font-bold text-xl shadow">
+          BKM
+        </div>
+        <div>
+          <h1 class="font-bold text-base md:text-lg leading-tight">SMK BINAKARYA MANDIRI</h1>
+          <p class="text-xs text-blue-200">Ujian Tengah Semester Gasal - Produk Kreatif & Kewirausahaan (PKK)</p>
+        </div>
+      </div>
+      <!-- Timer Box -->
+      <div id="timer-box" class="hidden bg-blue-950 px-4 py-2 rounded-lg border border-blue-700 flex items-center space-x-2">
+        <i class="fa-solid font-mono text-amber-400 fa-clock animate-pulse"></i>
+        <div class="text-right">
+          <div class="text-[10px] uppercase tracking-wider text-blue-300">Sisa Waktu</div>
+          <span id="timer-display" class="font-mono text-lg font-bold text-amber-400">50:00</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="flex-grow max-w-5xl w-full mx-auto p-4 md:p-6">
+
+    <!-- STEP 1: IDENTITY FORM -->
+    <div id="identity-section" class="bg-white rounded-xl shadow-md p-6 md:p-8 max-w-xl mx-auto border border-slate-200">
+      <div class="text-center mb-6">
+        <div class="w-16 h-16 bg-blue-100 text-blue-800 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl">
+          <i class="fa-solid fa-user-graduate"></i>
+        </div>
+        <h2 class="text-2xl font-bold text-slate-800">Formulir Identitas Peserta</h2>
+        <p class="text-sm text-slate-500 mt-1">Lengkapi data diri dengan benar sebelum memulainya.</p>
+      </div>
+
+      <form id="identity-form" onsubmit="startExam(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-semibold uppercase text-slate-600 mb-1">Nama Lengkap Siswa <span class="text-red-500">*</span></label>
+          <input type="text" id="student-name" required placeholder="Masukkan nama lengkap Anda" class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 outline-none text-slate-800 text-sm">
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold uppercase text-slate-600 mb-1">Pilih Jurusan / Kelas <span class="text-red-500">*</span></label>
+          <select id="student-class" required class="w-full px-4 py-2.5 rounded-lg border border-slate-300 focus:ring-2 focus:ring-blue-600 focus:border-blue-600 outline-none text-slate-800 text-sm">
+            <option value="">-- Pilih Kelas & Jurusan --</option>
+            <optgroup label="Desain Komunikasi Visual (DKV)">
+              <option value="XII DKV 1">XII DKV 1</option><option value="XII DKV 2">XII DKV 2</option>
+              <option value="XII DKV 3">XII DKV 3</option><option value="XII DKV 4">XII DKV 4</option>
+            </optgroup>
+            <optgroup label="Teknik Komputer & Jaringan (TKJ)">
+              <option value="XII TKJ 1">XII TKJ 1</option><option value="XII TKJ 2">XII TKJ 2</option><option value="XII TKJ 3">XII TKJ 3</option>
+              <option value="XII TKJ 4">XII TKJ 4</option><option value="XII TKJ 5">XII TKJ 5</option><option value="XII TKJ 6">XII TKJ 6</option>
+              <option value="XII TKJ 7">XII TKJ 7</option><option value="XII TKJ 8">XII TKJ 8</option><option value="XII TKJ 9">XII TKJ 9</option>
+              <option value="XII TKJ 10">XII TKJ 10</option><option value="XII TKJ 11">XII TKJ 11</option><option value="XII TKJ 12">XII TKJ 12</option><option value="XII TKJ 13">XII TKJ 13</option>
+            </optgroup>
+            <optgroup label="Teknik Kendaraan Ringan (TKR)">
+              <option value="XII TKR 1">XII TKR 1</option><option value="XII TKR 2">XII TKR 2</option><option value="XII TKR 3">XII TKR 3</option>
+              <option value="XII TKR 4">XII TKR 4</option><option value="XII TKR 5">XII TKR 5</option><option value="XII TKR 6">XII TKR 6</option>
+              <option value="XII TKR 7">XII TKR 7</option><option value="XII TKR 8">XII TKR 8</option><option value="XII TKR 9">XII TKR 9</option>
+              <option value="XII TKR 10">XII TKR 10</option><option value="XII TKR 11">XII TKR 11</option>
+            </optgroup>
+            <optgroup label="Teknik Sepeda Motor (TSM)">
+              <option value="XII TSM 1">XII TSM 1</option><option value="XII TSM 2">XII TSM 2</option><option value="XII TSM 3">XII TSM 3</option>
+              <option value="XII TSM 4">XII TSM 4</option><option value="XII TSM 5">XII TSM 5</option><option value="XII TSM 6">XII TSM 6</option>
+              <option value="XII TSM 7">XII TSM 7</option><option value="XII TSM 8">XII TSM 8</option><option value="XII TSM 9">XII TSM 9</option>
+              <option value="XII TSM 10">XII TSM 10</option><option value="XII TSM 11">XII TSM 11</option><option value="XII TSM 12">XII TSM 12</option><option value="XII TSM 13">XII TSM 13</option>
+            </optgroup>
+            <optgroup label="Teknik Instalasi Tenaga Listrik (TITL)">
+              <option value="XII TITL 1">XII TITL 1</option><option value="XII TITL 2">XII TITL 2</option>
+              <option value="XII TITL 3">XII TITL 3</option><option value="XII TITL 4">XII TITL 4</option>
+            </optgroup>
+            <optgroup label="Teknik Audio Video (TAV)">
+              <option value="XII TAV 1">XII TAV 1</option>
+            </optgroup>
+            <optgroup label="Teknik Pemesinan (TPM)">
+              <option value="XII TPM 1">XII TPM 1</option><option value="XII TPM 2">XII TPM 2</option><option value="XII TPM 3">XII TPM 3</option>
+            </optgroup>
+            <optgroup label="Teknik Alat Berat (TAB)">
+              <option value="XII TAB 1">XII TAB 1</option><option value="XII TAB 2">XII TAB 2</option><option value="XII TAB 3">XII TAB 3</option>
+              <option value="XII TAB 4">XII TAB 4</option><option value="XII TAB 5">XII TAB 5</option><option value="XII TAB 6">XII TAB 6</option>
+              <option value="XII TAB 7">XII TAB 7</option><option value="XII TAB 8">XII TAB 8</option><option value="XII TAB 9">XII TAB 9</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <div class="bg-amber-50 border border-amber-200 rounded-lg p-3.5 text-xs text-amber-800 flex items-start space-x-2">
+          <i class="fa-solid fa-shield-cat text-amber-600 text-base mt-0.5"></i>
+          <div>
+            <span class="font-bold">Ketentuan Sistem Anti-Kecurangan:</span>
+            <ul class="list-disc ml-4 mt-1 space-y-0.5">
+              <li>Durasi pengerjaan <b>50 Menit</b> untuk 50 Soal HOTS.</li>
+              <li>Dilarang berpindah tab/aplikasi browser. Setiap kecurangan akan mengakibatkan <b>reset pengerjaan ke nomor 1</b> dan timer tetap berjalan.</li>
+              <li>Siswa tidak diperkenankan memperbaiki jawaban setelah nilai terkirim.</li>
+            </ul>
+          </div>
+        </div>
+
+        <button type="submit" class="w-full bg-blue-700 hover:bg-blue-800 text-white font-bold py-3 rounded-lg transition-colors shadow-md flex items-center justify-center space-x-2">
+          <span>MULAI UJIAN SEKARANG</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </form>
+    </div>
+
+    <!-- STEP 2: EXAM INTERFACE -->
+    <div id="exam-section" class="hidden grid grid-cols-1 lg:grid-cols-4 gap-6">
+      
+      <!-- Question Column -->
+      <div class="lg:col-span-3 bg-white rounded-xl shadow-md p-6 border border-slate-200 flex flex-col justify-between">
+        <div>
+          <!-- Top Indicator Bar -->
+          <div class="flex justify-between items-center pb-4 mb-4 border-b border-slate-100">
+            <span class="text-xs font-bold uppercase tracking-wide bg-blue-100 text-blue-800 px-3 py-1 rounded-full">
+              Soal No. <span id="current-question-num">1</span> / 50
+            </span>
+            <span class="text-xs text-slate-500" id="student-tag">
+              <!-- Name & Class dynamically filled -->
+            </span>
+          </div>
+
+          <!-- Question Text -->
+          <div id="question-text" class="text-slate-800 font-medium text-base md:text-lg leading-relaxed mb-6">
+            <!-- Question prompt will be inserted here -->
+          </div>
+
+          <!-- Options -->
+          <div id="options-container" class="space-y-3">
+            <!-- Options dynamically generated -->
+          </div>
+        </div>
+
+        <!-- Bottom Controls -->
+        <div class="flex justify-between items-center pt-6 mt-6 border-t border-slate-100">
+          <button id="btn-prev" onclick="navigateQuestion(-1)" class="px-4 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 font-medium rounded-lg text-sm transition-colors flex items-center space-x-1">
+            <i class="fa-solid fa-chevron-left"></i>
+            <span>Sebelumnya</span>
+          </button>
+
+          <button id="btn-next" onclick="navigateQuestion(1)" class="px-5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg text-sm transition-colors flex items-center space-x-1">
+            <span>Berikutnya</span>
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Navigation Grid Sidebar -->
+      <div class="bg-white rounded-xl shadow-md p-5 border border-slate-200 flex flex-col justify-between h-fit">
+        <div>
+          <h3 class="font-bold text-slate-800 mb-3 text-sm flex items-center justify-between">
+            <span>Navigasi Soal</span>
+            <span class="text-xs text-slate-500 font-normal"><span id="answered-count">0</span>/50 Terjawab</span>
+          </h3>
+          
+          <div id="number-grid" class="grid grid-cols-5 gap-2 max-h-72 overflow-y-auto p-1">
+            <!-- 50 buttons dynamically added -->
+          </div>
+        </div>
+
+        <div class="mt-6 pt-4 border-t border-slate-100">
+          <button onclick="confirmSubmit()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2.5 rounded-lg text-sm transition-colors shadow flex items-center justify-center space-x-2">
+            <i class="fa-solid fa-paper-plane"></i>
+            <span>KIRIM NILAI</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3: RESULT & DISCUSSION SECTION -->
+    <div id="result-section" class="hidden space-y-6">
+      
+      <!-- Score Banner -->
+      <div class="bg-white rounded-xl shadow-md p-6 border border-slate-200 text-center relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-2 bg-blue-600"></div>
+        <div class="inline-block p-4 rounded-full bg-blue-50 text-blue-600 mb-3">
+          <i class="fa-solid fa-award text-4xl"></i>
+        </div>
+        <h2 class="text-2xl font-bold text-slate-800">Hasil Ujian Tengah Semester</h2>
+        <p id="result-student-info" class="text-sm text-slate-600 mt-1"></p>
+
+        <!-- Score Display -->
+        <div class="my-6 flex justify-center items-center space-x-6">
+          <div class="text-center px-4">
+            <div class="text-xs text-slate-500 uppercase tracking-wider mb-1">Skor Akhir</div>
+            <div id="final-score" class="text-5xl font-extrabold text-blue-700">0</div>
+            <div class="text-xs text-slate-400 mt-1">Dari Total 100 Poin</div>
+          </div>
+          <div class="h-12 w-px bg-slate-200"></div>
+          <div class="text-center px-4">
+            <div class="text-xs text-slate-500 uppercase tracking-wider mb-1">Benar / Salah</div>
+            <div class="text-2xl font-bold text-slate-700">
+              <span id="correct-count" class="text-emerald-600">0</span> / <span id="incorrect-count" class="text-red-600">0</span>
+            </div>
+            <div class="text-xs text-slate-400 mt-1">Soal Dikerjakan</div>
+          </div>
+        </div>
+
+        <div class="flex justify-center space-x-3">
+          <button onclick="downloadReport()" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg shadow transition flex items-center space-x-2">
+            <i class="fa-solid fa-download"></i>
+            <span>Download Transkrip Hasil</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Comprehensive Discussions -->
+      <div class="bg-white rounded-xl shadow-md p-6 border border-slate-200">
+        <h3 class="text-xl font-bold text-slate-800 mb-4 pb-2 border-b border-slate-200 flex items-center space-x-2">
+          <i class="fa-solid fa-book-open text-blue-600"></i>
+          <span>Pembahasan Lengkap Soal</span>
+        </h3>
+
+        <div id="discussion-container" class="space-y-6">
+          <!-- Dynamically populated with discussions -->
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Anti-Cheat Alert Modal -->
+  <div id="cheat-modal" class="fixed inset-0 bg-slate-900/80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-xl max-w-md w-full p-6 text-center shadow-2xl border border-red-200">
+      <div class="w-16 h-16 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+        <i class="fa-solid fa-triangle-exclamation animate-bounce"></i>
+      </div>
+      <h3 class="text-xl font-bold text-slate-800 mb-2">Terdeteksi Pelanggaran!</h3>
+      <p class="text-sm text-slate-600 mb-6">
+        Sistem mendeteksi bahwa Anda telah mengalihkan jendela/tab browser. Sesuai dengan peraturan anti-kecurangan, posisi soal Anda telah di-reset ke <b>Nomor 1</b> dan jawaban sebelumnya telah dihapus! Timer tetap berjalan.
+      </p>
+      <button onclick="closeCheatModal()" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2.5 rounded-lg text-sm transition">
+        Saya Mengerti & Lanjutkan Ujian
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // --- QUESTION DATABASE (50 HOTS C3-C5 Questions strictly derived from context) ---
+    const originalQuestions = [
+      {
+        id: 1,
+        question: "Usaha Bioma Chicken menjual ayam crispy dengan harga Rp15.000. Setelah pesaing baru muncul menjual seharga Rp12.000, omset Bioma Chicken turun 20%, namun konsumen mengakui cita rasa Bioma Chicken jauh lebih unggul. Langkah paling tepat berdasarkan analisis kompetitor adalah...",
+        options: [
+          { text: "Mempertahankan cita rasa sambil menambah nilai tambah kemasan dan layanan", isCorrect: true },
+          { text: "Menurunkan harga menjadi Rp10.000 agar menjadi yang termurah di pasar", isCorrect: false },
+          { text: "Menghentikan operasional bisnis karena dianggap tidak mampu bersaing lagi", isCorrect: false },
+          { text: "Meniru seluruh konsep produk serta bentuk kemasan milik pesaing baru", isCorrect: false },
+          { text: "Mengurangi takaran serta porsi ayam agar harga dapat dipangkas drastis", isCorrect: false }
+        ],
+        explanation: "Analisis kompetitor menunjukkan Bioma Chicken memiliki keunggulan kompetitif di rasa. Strategi terbaik adalah memelihara keunggulan utama sembari meningkatkan *value proposition* (kemasan/layanan) alih-alih ikut perang harga yang merusak margin."
+      },
+      {
+        id: 2,
+        question: "Hasil pemetaan kompetitor kedai kopi: Usaha A (Harga murah, rasa sedang, kemasan sederhana), Usaha B (Harga sedang, rasa enak, kemasan menarik), Usaha C (Harga mahal, rasa sangat enak, kemasan premium). Pemilik kedai baru bermodal terbatas ingin meningkatkan daya saing secara sistematis. Prioritas paling realistis adalah...",
+        options: [
+          { text: "Meningkatkan kualitas kemasan dan pelayanan secara bertahap sesuai kemampuan modal", isCorrect: true },
+          { text: "Menurunkan harga jual jauh di bawah seluruh pesaing tanpa menghitung HPP", isCorrect: false },
+          { text: "Memaksa membeli mesin kopi termahal untuk menyamai profil standar Usaha C", isCorrect: false },
+          { text: "Mengombinasikan seluruh kelebihan Usaha A, B, dan C secara bersamaan sekaligus", isCorrect: false },
+          { text: "Mengabaikan keberadaan seluruh kompetitor karena merasa memiliki basis pelanggan sendiri", isCorrect: false }
+        ],
+        explanation: "Bagi wirausaha bermodal terbatas, perbaikan bertahap (*gradual improvement*) pada elemen yang efisien (kemasan dan layanan) adalah opsi realistis daripada melakukan ekspansi modal berlebihan."
+      },
+      {
+        id: 3,
+        question: "Rani mengamati pesaing keripik pisangnya memiliki omset lebih tinggi karena kemasan modern, variasi rasa melimpah, dan aktif promosi medsos. Kesimpulan analisis kompetitor yang paling kredibel bagi Rani adalah...",
+        options: [
+          { text: "Rani perlu mengidentifikasi seluruh faktor keunggulan pesaing untuk diadaptasi sesuai kapasitasnya", isCorrect: true },
+          { text: "Keberhasilan pesaing semata-mata dipicu oleh faktor penetapan harga yang jauh lebih murah", isCorrect: false },
+          { text: "Rani wajib meniru secara persis seluruh produk dan cara pemasaran yang dilakukan pesaing", isCorrect: false },
+          { text: "Rani harus menghentikan usahanya karena dianggap sudah pasti kalah dalam kompetisi pasar", isCorrect: false },
+          { text: "Promosi di media sosial tidak memberi dampak langsung terhadap tingkat penjualan keripik", isCorrect: false }
+        ],
+        explanation: "Prinsip benchmarking/analisis kompetitor adalah mengidentifikasi faktor sukses (*key success factors*) untuk kemudian diadaptasi dan dimodifikasi, bukan menjiplak buta atau menyerah."
+      },
+      {
+        id: 4,
+        question: "Sebuah restoran cepat saji melakukan benchmarking dan menemukan kompetitor melayani pelanggan lebih cepat karena memanfaatkan aplikasi pemesanan digital. Penerapan hasil benchmarking yang paling efisien adalah...",
+        options: [
+          { text: "Menganalisis sistem digital tersebut lalu menyesuaikannya dengan skala kebutuhan dan anggaran usaha", isCorrect: true },
+          { text: "Membeli perangkat sistem digital termahal tanpa mempertimbangkan kesiapan dana usaha", isCorrect: false },
+          { text: "Meniru secara utuh seluruh alur aplikasi kompetitor tanpa ada penyesuaian operasional", isCorrect: false },
+          { text: "Menganggap sistem digital hanya cocok digunakan oleh restoran dengan skala jaringan nasional", isCorrect: false },
+          { text: "Mengubah total konsep produk makanan agar menyerupai menu utama restoran pesaing", isCorrect: false }
+        ],
+        explanation: "Benchmarking yang berhasil mengedepankan prinsip ATM (Amati, Tiru, Modifikasi) sesuai skala dan kapabilitas finansial bisnis sendiri."
+      },
+      {
+        id: 5,
+        question: "Kompetitor A menawarkan produk murah dengan kualitas standar. Kompetitor B mematok harga lebih tinggi namun memberikan kualitas serta layanan prima. Pengusaha yang membidik target segmen menengah harus menetapkan keputusan...",
+        options: [
+          { text: "Menentukan posisi harga dan kualitas berdasarkan kebutuhan spesifik target pasar menengah", isCorrect: true },
+          { text: "Selalu mematok harga terendah agar dapat menarik perhatian dari semua segmen konsumen", isCorrect: false },
+          { text: "Meniru persis struktur harga Kompetitor A tanpa menganalisis profil daya beli konsumen", isCorrect: false },
+          { text: "Mengabaikan kualitas produk karena faktor harga dianggap sebagai satu-satunya tolok ukur", isCorrect: false },
+          { text: "Menjual produk dengan harga setinggi mungkin agar dipersepsikan sebagai brand mewah", isCorrect: false }
+        ],
+        explanation: "Penetapan strategi harga dan nilai produk wajib berpatokan pada profil, ekspektasi, dan daya beli segmen pasar sasaran (*target market*)."
+      },
+      {
+        id: 6,
+        question: "Benchmarking menunjukkan kompetitor berhasil mendongkrak penjualan melalui program *customer loyalty*. Usaha milik Dimas bermodal terbatas. Program loyalitas paling rasional untuk diterapkan Dimas adalah...",
+        options: [
+          { text: "Membuat program kartu stempel poin pembelian sederhana untuk mendapatkan bonus produk", isCorrect: true },
+          { text: "Memberikan diskon harga secara masif setiap hari kepada seluruh lapisan pembeli", isCorrect: false },
+          { text: "Meniru persis program hadiah mewah kompetitor meskipun harus menguras tabungan modal", isCorrect: false },
+          { text: "Tidak melakukan langkah penyesuaian apapun karena modal dianggap tidak mencukupi", isCorrect: false },
+          { text: "Membagikan produk secara gratis kepada semua orang yang melewati area toko", isCorrect: false }
+        ],
+        explanation: "Program loyalitas berbasis *stamp card* atau poin sederhana berbiaya murah namun terbukti efektif meningkatkan *repeat purchase* tanpa mengganggu arus kas."
+      },
+      {
+        id: 7,
+        question: "Pengusaha melihat pesaing memiliki puluhan ribu *followers* media sosial. Ia berencana membeli *followers* palsu/bot agar bisnisnya terkesan tepercaya. Tinjauan objektif terhadap keputusan tersebut adalah...",
+        options: [
+          { text: "Kurang tepat karena jumlah *followers* bot tidak mencerminkan tingkat *engagement* dan potensi penjualan nyata", isCorrect: true },
+          { text: "Langkah tepat karena kuantitas pengikut merupakan penentu utama keberhasilan bisnis digital", isCorrect: false },
+          { text: "Tepat dilakukan selama calon pembeli tidak menyadari bahwa pengikut tersebut hasil pembelian", isCorrect: false },
+          { text: "Sangat direkomendasikan untuk menjatuhkan mental bertarung dari seluruh kompetitor pasar", isCorrect: false },
+          { text: "Merupakan kewajiban mutlak bagi semua pelaku usaha yang baru merambah ke dunia digital", isCorrect: false }
+        ],
+        explanation: "*Followers* fiktif tidak menghasilkan interaksi, transaksi, maupun royalti pelanggan. Hal tersebut merusak matriks analitik dan reputasi jangka panjang."
+      },
+      {
+        id: 8,
+        question: "Kedai *dessert box* tertinggal karena pesaing memiliki 15 varian rasa. Pemilik ingin berinovasi namun memiliki keterbatasan anggaran bahan baku. Rancangan strategi pengembangan yang paling terukur adalah...",
+        options: [
+          { text: "Mengembangkan 2-3 varian rasa baru yang paling diminati berdasarkan riset tren dan uji coba pasar", isCorrect: true },
+          { text: "Langsung meluncurkan 20 pilihan rasa baru secara mendadak untuk mengungguli pesaing", isCorrect: false },
+          { text: "Meniru secara persis seluruh daftar menu rasa yang dimiliki oleh pesaing utama", isCorrect: false },
+          { text: "Menurunkan mutu standar bahan baku agar modal cukup untuk membuat banyak varian", isCorrect: false },
+          { text: "Menghentikan seluruh produk lama dan menggantinya secara total dengan rasa acak", isCorrect: false }
+        ],
+        explanation: "Inovasi yang aman dan efisien adalah mengembangkan varian unggulan terfokus secara terukur melalui riset pasar (*MVP testing*)."
+      },
+      {
+        id: 9,
+        question: "Pemetaan kompetitor usaha minuman: Pesaing A unggul pada harga murah, Pesaing B unggul pada desain kemasan, Pesaing C unggul pada kecepatan layanan. Tindakan yang paling mencerminkan kemampuan mencipta (C5) adalah...",
+        options: [
+          { text: "Mengkombinasikan keunggulan ketiga pesaing dan merumuskan nilai keunikan baru khas usahanya", isCorrect: true },
+          { text: "Menyalin secara utuh konsep Pesaing A karena faktor harga dianggap paling mudah menarik pembeli", isCorrect: false },
+          { text: "Menyalin secara utuh Pesaing B semata-mata karena tampilan kemasannya sangat menarik", isCorrect: false },
+          { text: "Menyalin secara utuh Pesaing C karena menganggap pelayanan adalah satu-satunya standar sukses", isCorrect: false },
+          { text: "Mengekor secara pasif pada kompetitor mana pun yang memiliki angka omset tertinggi", isCorrect: false }
+        ],
+        explanation: "Kemampuan menciptakan (C5 Synthesizing/Creating) ditunjukkan dengan memadukan berbagai keunggulan menjadi proposisi nilai baru (*unique value proposition*) yang orisinal."
+      },
+      {
+        id: 10,
+        question: "Usaha kuliner Andi unggul rasa namun lemah dalam kemasan dan promosi digital. Andi bermodal terbatas. Solusi taktis pengembangan usaha secara efisien adalah...",
+        options: [
+          { text: "Mempertahankan cita rasa, memperbarui desain kemasan berkala, dan membuat promosi medsos organik", isCorrect: true },
+          { text: "Merombak total seluruh resep dan konsep produk agar identik dengan milik kompetitor", isCorrect: false },
+          { text: "Menurunkan harga jual sampai di bawah biaya produksi demi menarik konsumen baru", isCorrect: false },
+          { text: "Menghentikan aktivitas promosi sama sekali karena menganggapnya hanya membuang anggaran", isCorrect: false },
+          { text: "Mengganti jenis produk kuliner yang dijual dengan tren musiman yang sedang viral", isCorrect: false }
+        ],
+        explanation: "Fokus mempertahankan nilai inti (rasa) sembari memperbaiki kelemahan secara bertahap via promosi digital hemat biaya (*organic social media*) merupakan langkah paling realistis."
+      },
+      {
+        id: 11,
+        question: "Dalam pembukuan keuangan akhir periode, perusahaan mencatat Pendapatan Lain-lain sebesar Rp25.000.000 dan Beban Lain-lain sebesar Rp10.000.000. Dampak bersih kedua akun tersebut terhadap Laba Sebelum Pajak adalah...",
+        options: [
+          { text: "Menambah Laba Sebelum Pajak sebesar Rp15.000.000", isCorrect: true },
+          { text: "Menambah Laba Sebelum Pajak sebesar Rp35.000.000", isCorrect: false },
+          { text: "Mengurangi Laba Sebelum Pajak sebesar Rp15.000.000", isCorrect: false },
+          { text: "Mengurangi Laba Sebelum Pajak sebesar Rp35.000.000", isCorrect: false },
+          { text: "Tidak memberikan pengaruh apapun terhadap posisi Laba Sebelum Pajak", isCorrect: false }
+        ],
+        explanation: "Dampak bersih = Pendapatan Lain-lain (Rp25jt) - Beban Lain-lain (Rp10jt) = +Rp15.000.000 (Menambah Laba Sebelum Pajak)."
+      },
+      {
+        id: 12,
+        question: "Wirausahawan menangkap fenomena pergeseran tren gaya hidup sehat dengan mendirikan usaha kuliner *healthy catering* dan *infused water*. Faktor pendorong utama kemunculan peluang usaha tersebut adalah perubahan...",
+        options: [
+          { text: "Gaya hidup, pola konsumsi, dan kesadaran tren kesehatan masyarakat", isCorrect: true },
+          { text: "Dinamika konstelasi politik dan regulasi tata ruang daerah", isCorrect: false },
+          { text: "Anomali cuaca ekstrem serta perubahan musim panen regional", isCorrect: false },
+          { text: "Struktur komposisi suku bangsa dan adat istiadat setempat", isCorrect: false },
+          { text: "Pertumbuhan jumlah demografi penduduk tanpa perubahan perilaku", isCorrect: false }
+        ],
+        explanation: "Kesadaran akan kesehatan dan gaya hidup merupakan faktor tren perubahan perilaku sosial konsumen yang menciptakan pasar (*opportunity*) baru."
+      },
+      {
+        id: 13,
+        question: "Toko Roti BKM mencatatkan Total Penjualan Rp50.000.000, Harga Pokok Penjualan (HPP) Rp30.000.000, serta Beban Operasional Toko Rp8.000.000. Besarnya Laba Bersih sebelum pajak yang diperoleh adalah...",
+        options: [
+          { text: "Rp12.000.000", isCorrect: true },
+          { text: "Rp10.000.000", isCorrect: false },
+          { text: "Rp15.000.000", isCorrect: false },
+          { text: "Rp20.000.000", isCorrect: false },
+          { text: "Rp22.000.000", isCorrect: false }
+        ],
+        explanation: "Laba Kotor = Rp50jt - Rp30jt = Rp20jt. Laba Bersih = Laba Kotor - Beban Operasional = Rp20jt - Rp8jt = Rp12.000.000."
+      },
+      {
+        id: 14,
+        question: "Bengkel Sepeda Motor SMK Binakarya Mandiri memiliki fasilitas peralatan modern standar industri dan teknisi tersertifikasi BNSP. Dalam matriks Analisis SWOT, faktor internal tersebut dikategorikan sebagai...",
+        options: [
+          { text: "Strength (Kekuatan internal perusahaan)", isCorrect: true },
+          { text: "Weakness (Kelemahan internal perusahaan)", isCorrect: false },
+          { text: "Opportunity (Peluang lingkungan eksternal)", isCorrect: false },
+          { text: "Threat (Ancaman lingkungan eksternal)", isCorrect: false },
+          { text: "Strategi SO (Pengembangan kekuatan-peluang)", isCorrect: false }
+        ],
+        explanation: "Fasilitas canggih dan SDM bersertifikat yang dimiliki sendiri merupakan keunggulan internal, yang diklasifikasikan sebagai *Strength* dalam SWOT."
+      },
+      {
+        id: 15,
+        question: "Pak Budi enggan memanfaatkan TikTok Shop karena merasa cara lamanya sudah berhasil selama 10 tahun. Akhirnya tokonya sepi. Pernyataan yang tepat untuk mendorong Pak Budi berdasarkan sudut pandang *Growth Mindset* adalah...",
+        options: [
+          { text: "Kemampuan dan saluran jualan bisa dipelajari. Mari mencoba TikTok Shop secara bertahap, kegagalan di awal adalah proses belajar", isCorrect: true },
+          { text: "Sudah menjadi takdir bisnis, jika masa kejayaan habis maka usaha akan gulung tikar", isCorrect: false },
+          { text: "Kemajuan teknologi hanya tren sesaat yang tidak perlu dipelajari oleh pedagang senior", isCorrect: false },
+          { text: "Abaikan saja strategi kompetitor baru, rezeki setiap pedagang sudah diatur secara pasti", isCorrect: false },
+          { text: "Jika ingin sukses di era modern, seharusnya Pak Budi belajar menguasai teknologi sejak 20 tahun lalu", isCorrect: false }
+        ],
+        explanation: "*Growth Mindset* meyakini bahwa kemampuan dapat terus dikembangkan melalui latihan, keterbukaan pada hal baru, dan pemaknaan kegagalan sebagai proses belajar."
+      },
+      {
+        id: 16,
+        question: "Wirausahawan dihadapkan pada 2 opsi: (1) Menjual produk lama yang aman tapi pasarnya jenuh, (2) Menguji produk baru berbasis AI yang berisiko namun berpotensi tumbuh tinggi. Respon wirausaha berjiwa *Growth Mindset* adalah...",
+        options: [
+          { text: "Memilih Opsi 2 karena memandang risiko dan tantangan sebagai sarana belajar serta inovasi", isCorrect: true },
+          { text: "Memilih Opsi 1 karena mengutamakan rasa aman dan tidak bersedia menanggung risiko", isCorrect: false },
+          { text: "Menolak kedua opsi dan memilih mempertahankan kondisi usaha secara pasif", isCorrect: false },
+          { text: "Meniru produk pesaing tanpa melakukan modifikasi atau penyesuaian nilai tambah", isCorrect: false },
+          { text: "Menunda seluruh keputusan bisnis sampai ada pihak lain yang berhasil membuktikannya", isCorrect: false }
+        ],
+        explanation: "Individu dengan *Growth Mindset* berani mengambil tantangan berisiko terukur (*calculated risk*) demi pertumbuhan dan inovasi."
+      },
+      {
+        id: 17,
+        question: "Tren 2026 menunjukkan teknologi AI mampu membuat konten visual dan teks pemasaran secara instan. Banyak UMKM mengalami kendala digitalisasi. Peluang bisnis jasa baru yang berpotensi tinggi muncul adalah...",
+        options: [
+          { text: "Jasa Konsultan & Pendampingan AI Marketing untuk membantu UMKM menyusun strategi otomatisasi", isCorrect: true },
+          { text: "Industri percetakan konvensional dipastikan mati total sehingga harus ditutup segera", isCorrect: false },
+          { text: "Peluang usaha baru dipastikan tidak ada karena semua pemilik UMKM sudah mandiri", isCorrect: false },
+          { text: "Peluang penggunaan teknologi AI secara eksklusif hanya dimiliki oleh sarjana komputer", isCorrect: false },
+          { text: "Seluruh UMKM disarankan menutup usaha karena dianggap tidak mampu menyaingi AI", isCorrect: false }
+        ],
+        explanation: "Perkembangan AI menciptakan gap kapabilitas pada UMKM, sehingga membuka peluang bisnis baru berupa *jasa konsultasi dan pendampingan implementasi AI*."
+      },
+      {
+        id: 18,
+        question: "Dina memegang modal Rp15 juta. Opsi 1: Franchise boba (ROI 1 thn, pasar jenuh). Opsi 2: Laundry kiloan (ROI 8 bln, persaingan ketat). Opsi 3: Jasa 'Tukang Sayur Online' langganan (ROI 1,5 thn, pasar baru belum tergarap). Opsi berperspektif *Growth Mindset* jangka panjang adalah...",
+        options: [
+          { text: "Memilih Opsi 3 karena berani membangun sistem dari awal dan melihat peluang pasar yang belum terjamah", isCorrect: true },
+          { text: "Memilih Opsi 1 semata-mata karena merek franchise tersebut sudah dikenal luas oleh masyarakat", isCorrect: false },
+          { text: "Memilih Opsi 2 hanya tergiur oleh kecepatan pengembalian modal (ROI) tanpa memikirkan tingkat kejenuhan", isCorrect: false },
+          { text: "Membagi modal menjadi 3 bagian kecil untuk menjalankan seluruh opsi sekaligus tanpa fokus", isCorrect: false },
+          { text: "Menyimpan seluruh modal di bank hingga ada peluang yang menjamin keuntungan tanpa risiko", isCorrect: false }
+        ],
+        explanation: "Karakter *Growth Mindset* mengutamakan pengembangan potensi baru (*blue ocean market*) dan keberlanjutan jangka panjang meskipun membutuhkan proses membangun sistem."
+      },
+      {
+        id: 19,
+        question: "Data keuangan CV Maju Jaya per 31 Des 2026: Modal Awal (1 Jan): Rp50.000.000. Laba Bersih tahunan: Rp18.000.000. Prive Pemilik: Rp500.000/bulan. Tambahan Investasi Pemilik (Juli): Rp10.000.000. Berapa Modal Akhir per 31 Des 2026?",
+        options: [
+          { text: "Rp72.000.000", isCorrect: true },
+          { text: "Rp62.000.000", isCorrect: false },
+          { text: "Rp68.000.000", isCorrect: false },
+          { text: "Rp78.000.000", isCorrect: false },
+          { text: "Rp82.000.000", isCorrect: false }
+        ],
+        explanation: "Prive setahun = Rp500.000 x 12 = Rp6.000.000. Modal Akhir = Modal Awal + Laba Bersih + Tambahan Modal - Prive = Rp50jt + Rp18jt + Rp10jt - Rp6jt = Rp72.000.000."
+      },
+      {
+        id: 20,
+        question: "Transaksi Pak Doni: (1) Beli mobil operasional Rp80jt (DP Rp20jt, sisa utang 1 thn), (2) Prive Rp5jt, (3) Gaji karyawan belum dibayar Rp3jt, (4) Sewa toko dibayar dimuka Rp6jt. Total kenaikan Kewajiban (Utang) di Neraca adalah...",
+        options: [
+          { text: "Naik Rp63.000.000", isCorrect: true },
+          { text: "Naik Rp60.000.000", isCorrect: false },
+          { text: "Naik Rp66.000.000", isCorrect: false },
+          { text: "Naik Rp69.000.000", isCorrect: false },
+          { text: "Turun Rp5.000.000", isCorrect: false }
+        ],
+        explanation: "Kewajiban bertambah dari: Utang Mobil (Rp80jt - Rp20jt DP = Rp60jt) + Utang Gaji Karyawan (Rp3jt) = Rp63.000.000."
+      },
+      {
+        id: 21,
+        question: "Siswa jurusan TSM mendapati limbah rantai dan gir motor bekas di bengkel sekolah hanya dijual murah ke pengepul. Tindakan inovasi produk (*upcycling*) yang menaikkan nilai tambah limbah tersebut adalah...",
+        options: [
+          { text: "Mengolah limbah rantai dan gir bekas menjadi produk kerajinan interior seperti jam dinding, lampu hias, atau kursi industrial", isCorrect: true },
+          { text: "Mengumpulkan limbah sebanyak mungkin lalu menjualnya kembali ke pengepul besar", isCorrect: false },
+          { text: "Melelehkan limbah rantai menggunakan mesin las untuk dicetak menjadi paku sederhana", isCorrect: false },
+          { text: "Membuat surat permohonan ke pihak sekolah untuk menambah luas gudang penampungan limbah", isCorrect: false },
+          { text: "Mengurangi jam kegiatan praktik mekanik agar jumlah limbah logam tidak terus bertambah", isCorrect: false }
+        ],
+        explanation: "Mendaur ulang limbah suku cadang otomotif menjadi produk kerajinan bernilai seni/fungsi (*upcycling*) memberikan nilai tambah (*value-added*) jauh lebih tinggi daripada menjual material mentah."
+      },
+      {
+        id: 22,
+        question: "Siswa DKV memproduksi gantungan kunci akrilik idol K-Pop. Bahan & alat yang digunakan: laptop, perangkat lunak desain, mesin laser cutting, lembaran akrilik, ring logam, dan lem khusus. Peralatan (*equipment/tools*) produksi utama meliputi...",
+        options: [
+          { text: "Laptop, perangkat lunak desain grafis, dan mesin laser cutting", isCorrect: true },
+          { text: "Akrilik lembaran, cincin logam kecil, dan lem akrilik khusus", isCorrect: false },
+          { text: "Gantungan kunci jadi, akrilik lembaran, dan lem akrilik", isCorrect: false },
+          { text: "Desain digital, cincin logam kecil, dan mesin laser cutting", isCorrect: false },
+          { text: "Laptop, cincin logam kecil, dan desain digital", isCorrect: false }
+        ],
+        explanation: "Alat (peralatan/mesin) bersifat investasi berulang (laptop, software, mesin laser cutting), sedangkan akrilik, ring, dan lem tergolong bahan baku/penolong."
+      },
+      {
+        id: 23,
+        question: "Jasa sewa alat berat di Kota Bekasi sering terlambat mengirim alat dan unit sering mogok saat dipakai. Strategi kompetitif paling tepat bagi siswa Teknik Alat Berat (TAB) yang ingin membuka usaha serupa adalah...",
+        options: [
+          { text: "Menjamin garansi ketepatan waktu pengiriman dan melakukan *pre-delivery inspection* (SOP kelaikan unit) sebelum disewakan", isCorrect: true },
+          { text: "Menyewakan unit alat berat keluaran terbaru dengan menaikkan tarif sewa 2 kali lipat", isCorrect: false },
+          { text: "Hanya menerima penyewa yang berlokasi amat dekat dari area workshop sekolah", isCorrect: false },
+          { text: "Meniru pola operasional kompetitor karena kelambatan merupakan hal umum di jasa alat berat", isCorrect: false },
+          { text: "Menyewakan alat tanpa melalui proses pengecekan teknis demi mempercepat waktu kirim", isCorrect: false }
+        ],
+        explanation: "Memperbaiki kelemahan utama kompetitor (keterlambatan & kerusakan unit) melalui garansi waktu dan inspeksi kelayakan (*quality control*) adalah keunggulan bersaing paling ampuh."
+      },
+      {
+        id: 24,
+        question: "Siswa TKR melakukan benchmarking pada 3 bengkel mobil sekitar sekolah. Data operasional yang paling relevan dan terukur untuk dikumpulkan sebagai bahan komparasi adalah...",
+        options: [
+          { text: "Rata-rata waktu tunggu pelayanan, standar kualitas suku cadang, dan transparansi tarif jasa servis", isCorrect: true },
+          { text: "Jumlah *followers* akun media sosial pribadi dari masing-masing mekanik bengkel", isCorrect: false },
+          { text: "Warna kombinasi seragam kerja mekanik serta lama waktu tunggu di ruang tunggu", isCorrect: false },
+          { text: "Merek komputer kasir serta spesifikasi smartphone yang digunakan oleh pemilik bengkel", isCorrect: false },
+          { text: "Jumlah total karyawan bengkel serta daftar riwayat pendidikan seluruh mekanik", isCorrect: false }
+        ],
+        explanation: "Benchmarking efektif pada bidang otomotif berfokus pada dimensi *Service Quality*: estimasi waktu, kualitas *part*, dan kejelasan struktur biaya."
+      },
+      {
+        id: 25,
+        question: "Siswa TKJ menyusun proposal bisnis jasa *maintenance* jaringan komputer untuk lomba kewirausahaan. Bagian analisis yang paling krusial untuk meyakinkan juri/investor adalah...",
+        options: [
+          { text: "Analisis kelayakan usaha, strategi penetapan harga/pemasaran, dan Rencana Anggaran Biaya (RAB) yang transparan", isCorrect: true },
+          { text: "Daftar spesifikasi teknis lengkap seluruh perangkat keras router dan switch yang ada di pasaran", isCorrect: false },
+          { text: "Portofolio biodata lengkap serta daftar nilai akademik seluruh anggota kelompok siswa", isCorrect: false },
+          { text: "Desain logo perusahaan jasa serta konsep warna seragam lapangan untuk para teknisi", isCorrect: false },
+          { text: "Uraian sejarah panjang perkembangan teknologi jaringan internet dari generasi ke generasi", isCorrect: false }
+        ],
+        explanation: "Kelayakan usaha, strategi pemasaran, dan kejelasan Rencana Anggaran Biaya (RAB) merupakan pilar utama penilaian proposal bisnis (*business plan*)."
+      },
+      {
+        id: 26,
+        question: "Hasil observasi siswa TAV terhadap produk *Speaker Bluetooth Custom* pesaing: Casing kayu sangat estetik dan presisi, namun audio pecah pada volume tinggi dan harga relatif mahal bagi pelajar. Evaluasi SWOT pesaing yang tepat adalah...",
+        options: [
+          { text: "Kekuatan: Desain casing estetik & kokoh; Kelemahan: Kualitas output audio pecah & harga relatif mahal", isCorrect: true },
+          { text: "Kekuatan: Harga sangat murah; Kelemahan: Tampilan casing kasar dan tidak rapi", isCorrect: false },
+          { text: "Kekuatan: Suara bass jernih pada volume maksimal; Kelemahan: Tidak memiliki fitur Bluetooth", isCorrect: false },
+          { text: "Kekuatan: Keragaman pilihan modul audio; Kelemahan: Tidak dibekali baterai isi ulang", isCorrect: false },
+          { text: "Kekuatan: Layanan garansi servis cepat; Kelemahan: Dimensi ukuran speaker terlalu besar", isCorrect: false }
+        ],
+        explanation: "Evaluasi harus konsisten dengan data faktual: Kekuatan terletak pada penampilan visual/casing, sementara kelemahan pada performa suara dan penetapan harga."
+      },
+      {
+        id: 27,
+        question: "Siswa DKV membuat 100 pcs gantungan kunci akrilik K-Pop. Rincian biaya per pcs: Ring ganci (Rp1.000), Akrilik (Rp2.500), Cetak foto & laminasi (Rp4.000). Berapa total biaya produksi untuk satu kali batch (100 pcs)?",
+        options: [
+          { text: "Rp750.000", isCorrect: true },
+          { text: "Rp550.000", isCorrect: false },
+          { text: "Rp650.000", isCorrect: false },
+          { text: "Rp850.000", isCorrect: false },
+          { text: "Rp950.000", isCorrect: false }
+        ],
+        explanation: "Biaya per pcs = Rp1.000 + Rp2.500 + Rp4.000 = Rp7.500. Total biaya produksi 100 pcs = 100 x Rp7.500 = Rp750.000."
+      },
+      {
+        id: 28,
+        question: "Siswa TKR membuka jasa *Home Service* tune-up mobil dengan program 'Garansi Gratis Servis Ulang 14 Hari'. Indikator utama yang membuktikan keberhasilan diferensiasi strategi garansi ini adalah...",
+        options: [
+          { text: "Tingginya tingkat kepuasan pelanggan, maraknya *repeat order*, serta rekomendasi positif dari mulut ke mulut", isCorrect: true },
+          { text: "Penumpukan jumlah oli bekas dan kompor sparepart rusak di bengkel sekolah", isCorrect: false },
+          { text: "Penurunan jumlah total pelanggan yang melakukan kunjungan servis kembali", isCorrect: false },
+          { text: "Kenaikan harga beli suku cadang resmi dari distributor bengkel pusat", isCorrect: false },
+          { text: "Kecepatan mekanik siswa saat membersihkan peralatan kunci usai pengerjaan", isCorrect: false }
+        ],
+        explanation: "Jaminan garansi memicu rasa aman konsumen, yang diukur dari kepuasan, pembelian ulang (*repeat order*), serta rekomendasi positif (*Word of Mouth*)."
+      },
+      {
+        id: 29,
+        question: "Siswa TITL menawarkan jasa instalasi listrik rumah tinggal. Agar calon pelanggan dan investor yakin, poin nilai tambah (*value proposition*) utama yang wajib dicantumkan dalam penawaran adalah...",
+        options: [
+          { text: "Jaminan pekerjaan berstandar PUIL, garansi instalasi rapi, serta transparansi rincian biaya material", isCorrect: true },
+          { text: "Penggunaan merek alat listrik termahal tanpa memperhitungkan anggaran pemilik rumah", isCorrect: false },
+          { text: "Klaim mutlak bahwa sistem listrik tidak akan pernah mengalami korsleting seumur hidup", isCorrect: false },
+          { text: "Daftar susunan silsilah keluarga dari masing-masing siswa yang bertugas di lapangan", isCorrect: false },
+          { text: "Janji pengerjaan super cepat meskipun harus mengabaikan standar keselamatan kerja (K3)", isCorrect: false }
+        ],
+        explanation: "Dalam jasa kelistrikan, jaminan keamanan (standar PUIL/K3), kerapihan pengerjaan, garansi, serta transparansi biaya merupakan faktor penentu kepercayaan."
+      },
+      {
+        id: 30,
+        question: "Bengkel TSM milik Budi di area perkotaan mengalami lonjakan permintaan perbaikan motor. Budi berencana menambah layanan perawatan berkala dan modifikasi. Fokus utama Budi dalam menganalisis peluang usaha baru ini adalah...",
+        options: [
+          { text: "Menganalisis profil kebutuhan spesifik pelanggan dan tren perkembangan gaya hidup otomotif lokal", isCorrect: true },
+          { text: "Membandingkan harga jasa modifikasi dengan bengkel skala besar di kota lain yang jauh", isCorrect: false },
+          { text: "Semata-mata mengandalkan tren video modifikasi viral di media sosial tanpa verifikasi lokal", isCorrect: false },
+          { text: "Mengurangi jumlah tenaga mekanik demi menekan pengeluaran beban operasional bengkel", isCorrect: false },
+          { text: "Membeli stok suku cadang modifikasi dalam jumlah masif tanpa memetakan minat pasar", isCorrect: false }
+        ],
+        explanation: "Analisis peluang bisnis berbasis kebutuhan pasar (*market-driven*) berfokus pada kesesuaian antara tren lokal dan ekspektasi riil pelanggan sekitar."
+      },
+      {
+        id: 31,
+        question: "Penjualan keripik pisang Raka turun 30% karena masuknya pesaing baru. Riset konsumen menunjukkan pembeli menyukai kemasan praktis pouch klip dan varian rasa unik. Taktik perbaikan yang wajib diambil Raka adalah...",
+        options: [
+          { text: "Mengembangkan inovasi varian rasa baru dan memperbarui kemasan sesuai preferensi pasar", isCorrect: true },
+          { text: "Menurunkan harga jual secara drastis hingga berada di bawah biaya produksi dasar", isCorrect: false },
+          { text: "Mengurangi pemakaian mutu bahan baku pisang demi menghemat pengeluaran produksi", isCorrect: false },
+          { text: "Meniru secara menyeluruh bentuk kemasan dan nama merek milik pesaing terlaris", isCorrect: false },
+          { text: "Menghentikan total aktivitas penjualan hingga kompetitor pergi dari pasar", isCorrect: false }
+        ],
+        explanation: "Langkah terbaik mengatasi penurunan omset akibat perubahan preferensi pasar adalah melakukan perbaikan produk (*product redevelopment*) sesuai masukkan konsumen."
+      },
+      {
+        id: 32,
+        question: "Sebuah usaha makanan mencatat omset tinggi namun laba bersih sangat tipis. Evaluasi menunjukkan pemilik sering memberi diskon berlebihan dan tidak memasukkan unsur biaya overhead saat menentukan harga jual. Solusinya adalah...",
+        options: [
+          { text: "Menghitung ulang HPP secara akurat (termasuk overhead) dan merumuskan penetapan harga berbasis margin wajar", isCorrect: true },
+          { text: "Menaikkan harga jual secara ekstrem 3 kali lipat secara mendadak kepada konsumen", isCorrect: false },
+          { text: "Menghentikan seluruh program promosi dan diskon secara permanen tanpa evaluasi", isCorrect: false },
+          { text: "Mengurangi porsi dan ukuran produk secara diam-diam tanpa menginformasikannya", isCorrect: false },
+          { text: "Menambah jumlah tenaga kerja agar volume penjualan produk dapat meningkat pesat", isCorrect: false }
+        ],
+        explanation: "Akar masalah margin tipis pada omset tinggi adalah kesalahan kalkulasi HPP dan penetapan harga (*pricing strategy*). Solusinya adalah rekalkulasi struktur biaya secara menyeluruh."
+      },
+      {
+        id: 33,
+        question: "Dina memegang modal Rp5.000.000. Hasil riset: target konsumen mayoritas anak muda yang aktif berbelanja lewat media sosial dan pengiriman online. Alokasi modal yang paling rasional bagi Dina adalah...",
+        options: [
+          { text: "Mengalokasikan anggaran utama pada promosi digital terfokus dan peralatan produksi mendasar", isCorrect: true },
+          { text: "Menghabiskan seluruh tabungan modal untuk menyewa lapak fisik di lokasi mahal", isCorrect: false },
+          { text: "Menggunakan seluruh modal hanya untuk membeli peralatan dapur canggih bermerek", isCorrect: false },
+          { text: "Menyimpan seluruh modal di tabungan karena takut menghadapi risiko kegagalan usaha", isCorrect: false },
+          { text: "Mengikuti alokasi bisnis pesaing tanpa mempertimbangkan profil target konsumen sendiri", isCorrect: false }
+        ],
+        explanation: "Prinsip alokasi modal efisien (*Lean Startup*) adalah menyesuaikan pengeluaran dengan perilaku target konsumen (online market = prioritas pada promosi digital & efisiensi alat)."
+      },
+      {
+        id: 34,
+        question: "Brand pakaian lokal kebanjiran ulasan negatif karena ukuran (*sizing*) baju tidak konsisten. Langkah *Quality Control* (QC) dan manajemen keluhan pelanggan yang tepat dilakukan adalah...",
+        options: [
+          { text: "Mengevaluasi standar pola ukuran, memperketat kontrol kualitas produksi, dan memberikan ganti rugi/retur bagi pembeli terdampak", isCorrect: true },
+          { text: "Menghapus seluruh ulasan negatif di media sosial dan memblokir akun konsumen yang mengeluh", isCorrect: false },
+          { text: "Menghentikan seluruh kegiatan produksi pakaian secara permanen tanpa mencari penyebabnya", isCorrect: false },
+          { text: "Menyalahkan konsumen karena dianggap tidak teliti saat membaca tabel ukuran baju", isCorrect: false },
+          { text: "Menurunkan harga jual seluruh produk pakaian untuk menutupi cacat produksi", isCorrect: false }
+        ],
+        explanation: "Solusi masalah mutu produk adalah evaluasi proses manufaktur (*quality control*) disertai penanganan komplain yang bertanggung jawab (*customer recovery*)."
+      },
+      {
+        id: 35,
+        question: "Andi ingin menjual makanan sehat di area sekolah/kantor. Pesaing sejenis sudah ada dengan harga murah. Strategi diferensiasi yang tepat agar Andi memiliki keunggulan bersaing (*competitive advantage*) adalah...",
+        options: [
+          { text: "Menciptakan keunikan nilai produk (misal: porsi terukur, variasi saus sehat, transparansi kalori) yang sesuai kebutuhan target", isCorrect: true },
+          { text: "Menjual produk makanan sehat dengan harga serendah mungkin hingga rugi", isCorrect: false },
+          { text: "Meniru persis susunan menu dan tampilan kemasan milik pesaing yang paling laris", isCorrect: false },
+          { text: "Mengurangi standar kualitas bahan baku sayuran agar biaya produksi menjadi amat murah", isCorrect: false },
+          { text: "Membuka banyak cabang usaha baru sekaligus pada minggu pertama operasional", isCorrect: false }
+        ],
+        explanation: "Menghindari perang harga dengan pesaing murah dilakukan melalui penentuan *Unique Selling Proposition* (USP) seperti pencantuman kalori atau diferensiasi rasa."
+      },
+      {
+        id: 36,
+        question: "Toko online pakaian mendadak viral sehingga pesanan melonjak drastis. Namun kapasitas produksi masih manual dan stok bahan baku terbatas. Jika kondisi ini dibiarkan, risiko bisnis terbesar adalah...",
+        options: [
+          { text: "Penurunan reputasi merek dan kepercayaan konsumen akibat keterlambatan pengiriman serta pembatalan pesanan", isCorrect: true },
+          { text: "Biaya promosi dan pemasaran produk akan menjadi semakin kecil secara otomatis", isCorrect: false },
+          { text: "Tingkat kepuasan dan loyalitas pelanggan akan mengalami peningkatan drastis", isCorrect: false },
+          { text: "Harga bahan baku di tingkat pemasok akan mengalami penurunan harga secara otomatis", isCorrect: false },
+          { text: "Jumlah pesaing di industri yang sama akan berkurang dengan sendirinya", isCorrect: false }
+        ],
+        explanation: "Ketidakmampuan memenuhi lonjakan permintaan (*unfulfilled demand*) berisiko merusak citra merek (*brand image*) dan memicu ulasan negatif massal."
+      },
+      {
+        id: 37,
+        question: "Seorang wirausahawan memiliki produk bermutu tinggi, namun tingkat penyerapan penjualannya sangat rendah. Evaluasi menunjukkan target pasar belum mengetahui keberadaan produk tersebut. Strategi yang tepat adalah...",
+        options: [
+          { text: "Meningkatkan intensitas dan jangkauan kegiatan promosi yang edukatif dan tepat sasaran", isCorrect: true },
+          { text: "Menurunkan kualitas bahan baku produk agar harga dapat ditekan serendah mungkin", isCorrect: false },
+          { text: "Menghentikan seluruh proses produksi barang tanpa melakukan riset penyebab utama", isCorrect: false },
+          { text: "Menaikkan harga jual produk agar terkesan sebagai barang mewah dan eksklusif", isCorrect: false },
+          { text: "Mengurangi pilihan variasi produk tanpa memberikan informasi kepada pelanggan", isCorrect: false }
+        ],
+        explanation: "Rendahnya angka penjualan akibat kurangnya *brand awareness* ditanggulangi melalui penguatan strategi promosi (*promotional mix*) agar produk dikenal pasar."
+      },
+      {
+        id: 38,
+        question: "Budi ingin membuka jasa desain grafis. Kompetitor umum menawarkan harga murah untuk desain standar. Namun riset menunjukkan UMKM lokal sangat membutuhkan desain konten promosi digital yang spesifik. Peluang terbaik Budi adalah...",
+        options: [
+          { text: "Mengambil posisi spesialis: Menawarkan paket jasa desain promosi digital terfokus khusus UMKM", isCorrect: true },
+          { text: "Menurunkan tarif jasa desain hingga di bawah rata-rata harga seluruh pesaing murah", isCorrect: false },
+          { text: "Meniru secara identik seluruh paket layanan umum yang ditawarkan oleh kompetitor", isCorrect: false },
+          { text: "Membatasi jumlah klien maksimal 1 orang per bulan agar beban kerja terasa ringan", isCorrect: false },
+          { text: "Menghindari penggunaan aplikasi komputer digital dalam merancang karya desain", isCorrect: false }
+        ],
+        explanation: "Memanfaatkan *niche market* (pasar ceruk) yang belum terlayani optimal oleh kompetitor umum adalah strategi efektif bagi wirausaha baru."
+      },
+      {
+        id: 39,
+        question: "Perusahaan roti mengkaji 2 Opsi tingkatkan laba: (1) Naikkan harga 20%, (2) Efisiensi biaya dengan menekan pemborosan bahan baku (*waste management*). Konsumen diketahui sangat sensitif terhadap harga. Keputusan paling tepat adalah...",
+        options: [
+          { text: "Memilih Opsi 2: Meningkatkan efisiensi produksi dan mengurangi pemborosan bahan tanpa menurunkan kualitas", isCorrect: true },
+          { text: "Menaikkan harga jual 20% secara langsung tanpa mempedulikan reaksi konsumen sensitif", isCorrect: false },
+          { text: "Mengurangi standar mutu mutu bahan baku utama agar biaya produksi bisa turun", isCorrect: false },
+          { text: "Menghentikan seluruh aktivitas pemasaran dan promosi produk secara mendadak", isCorrect: false },
+          { text: "Mengurangi volume total produksi roti hingga setengah dari kapasitas normal", isCorrect: false }
+        ],
+        explanation: "Pada pasar yang sensitif terhadap harga (*price elastic*), meningkatkan keuntungkan dilakukan melalui efisiensi internal (*cost reduction*) daripada menaikkan harga jual."
+      },
+      {
+        id: 40,
+        question: "Kelompok siswa ingin meluncurkan produk kerajinan daur ulang berbahan limbah plastik. Sebelum memproduksi dalam skala besar dengan modal terbatas, langkah validasi pasar (*market testing*) yang paling bijak adalah...",
+        options: [
+          { text: "Membuat sampel prototipe produk dan melakukan uji coba penjualan skala terbatas untuk mengukur respon pasar", isCorrect: true },
+          { text: "Langsung memproduksi barang dalam jumlah ribuan unit memanfaatkan seluruh tabungan", isCorrect: false },
+          { text: "Meminjam modal usaha skala besar di bank sebelum mengetahui kepastian minat konsumen", isCorrect: false },
+          { text: "Menunggu hingga ada kompetitor lain yang sukses menjual produk daur ulang serupa", isCorrect: false },
+          { text: "Menentukan harga jual secara sepihak berdasarkan estimasi pribadi tanpa survei pembeli", isCorrect: false }
+        ],
+        explanation: "Prinsip validasi ide bisnis adalah menguji *Minimum Viable Product* (MVP) atau prototipe pada skala kecil untuk meminimalkan risiko kegagalan modal."
+      },
+      {
+        id: 41,
+        question: "Siswa Jurusan TAV merancang produk amplifier audio buatan tangan. Untuk menentukan harga jual produk secara akurat, langkah awal yang harus dihitung adalah...",
+        options: [
+          { text: "Mengakumulasikan seluruh biaya variabel bahan komponen dan biaya tenaga kerja langsung untuk menentukan HPP", isCorrect: true },
+          { text: "Menetapakan harga mengikuti harga amplifier impor tercanggih yang ada di toko besar", isCorrect: false },
+          { text: "Menjumlahkan seluruh modal investasi pembelian alat solder dan multimeter ke dalam 1 unit produk", isCorrect: false },
+          { text: "Mematok harga serendah mungkin tanpa memperhitungkan biaya pembelian komponen elektronik", isCorrect: false },
+          { text: "Mengabaikan margin keuntungan demi memastikan produk cepat habis terjual di pasaran", isCorrect: false }
+        ],
+        explanation: "Penetapan harga berbasis biaya (*cost-plus pricing*) diawali dengan kalkulasi Harga Pokok Penjualan (HPP) dari total biaya bahan baku dan tenaga kerja langsung."
+      },
+      {
+        id: 42,
+        question: "Sebuah toko komputer & jaringan (TKJ) mengalami penurunan margin akibat maraknya e-commerce. Pemilik ingin bertransformasi menambah layanan jasa. Langkah diversifikasi layanan yang paling relevan dengan kompetensi TKJ adalah...",
+        options: [
+          { text: "Menyediakan layanan jasa instalasi server cloud, perakitan PC custom, dan perawatan jaringan rutin kantor", isCorrect: true },
+          { text: "Menjual suku cadang mesin kendaraan bermotor roda dua di area depan toko komputer", isCorrect: false },
+          { text: "Mengubah total toko jaringan menjadi warung makan serba ada demi mengejar omset harian", isCorrect: false },
+          { text: "Fokus menjual produk kabel fisik tanpa memberikan opsi layanan perbaikan atau konfigurasi", isCorrect: false },
+          { text: "Menurunkan harga jual perangkat komputer hingga di bawah harga beli dari distributor", isCorrect: false }
+        ],
+        explanation: "Diversifikasi terhubung (*related diversification*) memanfaatkan kompetensi keahlian utama (TKJ) untuk menawarkan jasa bernilai tambah (*value-added services*)."
+      },
+      {
+        id: 43,
+        question: "Perusahaan fabrikasi mesin (TPM) menghadapi peningkatan biaya bahan baku besi hingga 15%. Agar tidak kehilangan pelanggan industri, strategi efisiensi operasional yang tepat diambil adalah...",
+        options: [
+          { text: "Menerapkan teknik pemotongan bahan presisi (layout optimasi) untuk meminimalisir limbah sisa potongan besi", isCorrect: true },
+          { text: "Mengganti material besi dengan plastik murah yang tidak memenuhi standar ketahanan teknis", isCorrect: false },
+          { text: "Menaikkan tarif pengerjaan mesin sebesar 50% secara sepihak kepada seluruh pelanggan tetap", isCorrect: false },
+          { text: "Menghentikan penggunaan mesin-mesin canggih dan kembali menggunakan alat potong manual", isCorrect: false },
+          { text: "Menolak pesanan pengerjaan mesin dari pelanggan lama yang memesan dengan harga standar", isCorrect: false }
+        ],
+        explanation: "Efisiensi manufaktur pada bidang pemesinan dilakukan dengan reduksi *waste* (sampah bahan) melalui optimasi tata letak potong (*nesting layout*) tanpa mengorbankan spesifikasi."
+      },
+      {
+        id: 44,
+        question: "Siswa TITL menemukan bahwa pelanggan sering khawatir akan keselamatan instalasi listrik rumah tua. Peluang usaha jasa yang tepat diciptakan berbasis *safety awareness* tersebut adalah...",
+        options: [
+          { text: "Jasa audit kelaikan dan inspeksi keselamatan instalasi listrik berkala beserta sertifikat jaminan", isCorrect: true },
+          { text: "Jasa penjualan lampu hias impor tanpa menyediakan layanan pemasangan atau pemeriksaan", isCorrect: false },
+          { text: "Menyarankan pelanggan mengganti seluruh jaringan kabel listrik setiap 3 bulan sekali", isCorrect: false },
+          { text: "Membuka kursus kilat kelistrikan gratis bagi anak-anak sekolah dasar di sekitar lokasi", isCorrect: false },
+          { text: "Menjual alat pemadam api ringan (APAR) tanpa mengedukasi pencegahan korsleting listrik", isCorrect: false }
+        ],
+        explanation: "Kekhawatiran pelanggan (*customer pain point*) berupa risiko bahaya listrik melahirkan peluang usaha *jasa audit & inspeksi keselamatan instalasi*."
+      },
+      {
+        id: 45,
+        question: "Dalam laporan laba rugi bengkel TSM, tercatat: Pendapatan Servis Rp15.000.000, Pendapatan Penjualan Oli Rp5.000.000, Beban Gaji Rp4.000.000, Beban Sewa Rp2.000.000, Beban Perlengkapan Rp1.000.000. Berapa Laba Operasional bengkel?",
+        options: [
+          { text: "Rp13.000.000", isCorrect: true },
+          { text: "Rp10.000.000", isCorrect: false },
+          { text: "Rp12.000.000", isCorrect: false },
+          { text: "Rp15.000.000", isCorrect: false },
+          { text: "Rp18.000.000", isCorrect: false }
+        ],
+        explanation: "Total Pendapatan = Rp15jt + Rp5jt = Rp20.000.000. Total Beban Operasional = Rp4jt + Rp2jt + Rp1jt = Rp7.000.000. Laba Operasional = Rp20jt - Rp7jt = Rp13.000.000."
+      },
+      {
+        id: 46,
+        question: "Di bawah ini yang merupakan contoh penerapan *Growth Mindset* pada wirausahawan bidang DKV ketika karyanya dikritik pedas oleh klien adalah...",
+        options: [
+          { text: "Menerima masukan sebagai bahan evaluasi perbaikan desain dan mempelajari teknik baru yang diinginkan klien", isCorrect: true },
+          { text: "Marah dan langsung memblokir kontak klien karena merasa selera seninya ditinggikan", isCorrect: false },
+          { text: "Berhenti menjadi desainer grafis dan mencari pekerjaan lain yang tidak membutuhkan kreativitas", isCorrect: false },
+          { text: "Menyalahkan klien karena dianggap tidak mengerti estetika seni desain modern", isCorrect: false },
+          { text: "Mengabaikan kritik tersebut dan tetap mengirimkan hasil desain lama tanpa ada revisi", isCorrect: false }
+        ],
+        explanation: "Ciri utama *Growth Mindset* adalah menganggap umpan balik/kritik sebagai sarana konstruktif untuk bertumbuh dan mengasah keahlian."
+      },
+      {
+        id: 47,
+        question: "Siswa TAB (Teknik Alat Berat) merencanakan usaha rental *hydraulic excavator*. Dalam analisis risiko, ancaman (*threat*) eksternal utama yang wajib diantisipasi dalam rencana bisnis adalah...",
+        options: [
+          { text: "Fluktuasi harga bahan bakar solar industri serta perubahan regulasi kegiatan pertambangan/konstruksi", isCorrect: true },
+          { text: "Keterbatasan jumlah ruang kelas praktik yang dimiliki oleh SMK Binakarya Mandiri", isCorrect: false },
+          { text: "Kurangnya keterampilan siswa dalam mengoperasikan perangkat lunak pengolah kata", isCorrect: false },
+          { text: "Ketidakmampuan mekanik internal dalam melakukan penggantian oli rutin alat berat", isCorrect: false },
+          { text: "Kerusakan pada salah satu kunci pas yang ada di bengkel perkakas sekolah", isCorrect: false }
+        ],
+        explanation: "Ancaman (*threat*) berasal dari faktor eksternal makro, seperti fluktuasi harga energi (solar) dan regulasi pemerintah daerah/pusat."
+      },
+      {
+        id: 48,
+        question: "Proses pembuatan logo produk makanan kemasan melibatkan riset karakter merek, sketsa manual, digitalisasi vektor, dan uji keterbacaan. Urutan tahapan produksi DKV yang runtut adalah...",
+        options: [
+          { text: "Riset Merek -> Sketsa Ide -> Digitalisasi Vektor -> Uji Aplikasi Kemasan", isCorrect: true },
+          { text: "Digitalisasi Vektor -> Riset Merek -> Uji Aplikasi Kemasan -> Sketsa Ide", isCorrect: false },
+          { text: "Uji Aplikasi Kemasan -> Digitalisasi Vektor -> Sketsa Ide -> Riset Merek", isCorrect: false },
+          { text: "Sketsa Ide -> Uji Aplikasi Kemasan -> Riset Merek -> Digitalisasi Vektor", isCorrect: false },
+          { text: "Digitalisasi Vektor -> Sketsa Ide -> Riset Merek -> Uji Aplikasi Kemasan", isCorrect: false }
+        ],
+        explanation: "Alur kerja (*workflow*) DKV dimula dari pemahaman riset/brief, ideasi sketsa, eksekusi digital (vektor), hingga pengujian penerapannya."
+      },
+      {
+        id: 49,
+        question: "Sebuah bengkel TKR mencatatkan data Neraca: Kas Rp10.000.000, Peralatan Rp40.000.000, Utang Usaha Rp15.000.000. Berapa nilai Ekuitas (Modal) pemilik bengkel tersebut?",
+        options: [
+          { text: "Rp35.000.000", isCorrect: true },
+          { text: "Rp25.000.000", isCorrect: false },
+          { text: "Rp30.000.000", isCorrect: false },
+          { text: "Rp45.000.000", isCorrect: false },
+          { text: "Rp50.000.000", isCorrect: false }
+        ],
+        explanation: "Persamaan Dasar Akuntansi: Aset = Kewajiban + Ekuitas. Total Aset = Kas (Rp10jt) + Peralatan (Rp40jt) = Rp50.000.000. Ekuitas = Aset - Utang = Rp50jt - Rp15jt = Rp35.000.000."
+      },
+      {
+        id: 50,
+        question: "Prinsip utama kontrol kualitas (*Quality Control*) pada pengerjaan instalasi penerangan listrik gedung oleh siswa TITL sebelum diserahterimakan kepada pelanggan adalah...",
+        options: [
+          { text: "Pengujian tahanan isolasi kabel, pengujian fungsi pemutus arus (MCB), dan pengecekan kerapihan jalur pipa Conduit", isCorrect: true },
+          { text: "Memastikan seluruh lampu menyala terang tanpa perlu mengukur beban arus listrik", isCorrect: false },
+          { text: "Mengecat ulang seluruh dinding ruangan tempat sakelar dipasang agar terlihat baru", isCorrect: false },
+          { text: "Menghitung jumlah sisa potongan kabel isolasi untuk dijual kembali ke pasar grosir", isCorrect: false },
+          { text: "Menanyakan respon keindahan warna lampu kepada tetangga di sekitar lokasi gedung", isCorrect: false }
+        ],
+        explanation: "Quality Control (QC) kelistrikan wajib menguji fungsi keandalan dan keamanan teknis (tahanan isolasi, proteksi MCB, dan kerapihan instalasi) sesuai regulasi PUIL."
+      }
+    ];
+
+    // State Variables
+    let activeQuestions = [];
+    let studentName = "";
+    let studentClass = "";
+    let userAnswers = {}; // { questionIndex: selectedOptionIndex }
+    let currentQIndex = 0;
+    let timerSeconds = 50 * 60; // 50 Minutes
+    let timerInterval = null;
+    let examSubmitted = false;
+
+    // Shuffle Utility
+    function shuffleArray(array) {
+      const arr = [...array];
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    // Start Exam Function
+    function startExam(e) {
+      e.preventDefault();
+      studentName = document.getElementById('student-name').value.trim();
+      studentClass = document.getElementById('student-class').value;
+
+      if (!studentName || !studentClass) {
+        alert("Silakan isi nama dan pilih jurusan kelas Anda terlebih dahulu!");
+        return;
+      }
+
+      // Randomize questions & options per student session
+      activeQuestions = shuffleArray(originalQuestions).map(q => {
+        const shuffledOptions = shuffleArray(q.options);
+        return {
+          ...q,
+          options: shuffledOptions
+        };
+      });
+
+      // UI Switch
+      document.getElementById('identity-section').classList.add('hidden');
+      document.getElementById('exam-section').classList.remove('hidden');
+      document.getElementById('timer-box').classList.remove('hidden');
+      document.getElementById('student-tag').innerHTML = `<i class="fa-solid fa-user text-blue-600 mr-1"></i> <b>${studentName}</b> (${studentClass})`;
+
+      // Render Number Navigation
+      renderGridNav();
+
+      // Render First Question
+      renderQuestion(0);
+
+      // Start Countdown Timer
+      startTimer();
+
+      // Listen for tab switch anti-cheat
+      document.addEventListener("visibilitychange", handleVisibilityChange);
+    }
+
+    // Render Grid Nav
+    function renderGridNav() {
+      const gridContainer = document.getElementById('number-grid');
+      gridContainer.innerHTML = '';
+
+      activeQuestions.forEach((_, idx) => {
+        const btn = document.createElement('button');
+        btn.id = `grid-btn-${idx}`;
+        btn.innerText = idx + 1;
+        btn.onclick = () => jumpToQuestion(idx);
+        btn.className = "h-9 font-semibold text-xs rounded-lg border flex items-center justify-center transition-all bg-slate-100 text-slate-700 border-slate-300 hover:bg-slate-200";
+        gridContainer.appendChild(btn);
+      });
+    }
+
+    // Render Question Item
+    function renderQuestion(index) {
+      currentQIndex = index;
+      const q = activeQuestions[index];
+
+      document.getElementById('current-question-num').innerText = index + 1;
+      document.getElementById('question-text').innerText = q.question;
+
+      const optionsContainer = document.getElementById('options-container');
+      optionsContainer.innerHTML = '';
+
+      const labels = ['A', 'B', 'C', 'D', 'E'];
+
+      q.options.forEach((opt, optIdx) => {
+        const isSelected = userAnswers[index] === optIdx;
+        const optBtn = document.createElement('div');
+        optBtn.onclick = () => selectOption(index, optIdx);
+        optBtn.className = `p-3.5 border rounded-lg cursor-pointer flex items-start space-x-3 transition-all ${
+          isSelected 
+            ? 'bg-blue-50 border-blue-600 text-blue-900 shadow-sm' 
+            : 'bg-white border-slate-200 hover:bg-slate-50 text-slate-700'
+        }`;
+
+        optBtn.innerHTML = `
+          <div class="w-6 h-6 rounded-full border flex items-center justify-center text-xs font-bold shrink-0 mt-0.5 ${
+            isSelected ? 'bg-blue-600 text-white border-blue-600' : 'border-slate-300 text-slate-500 bg-slate-100'
+          }">
+            ${labels[optIdx]}
+          </div>
+          <div class="text-sm md:text-base leading-snug font-normal">${opt.text}</div>
+        `;
+        optionsContainer.appendChild(optBtn);
+      });
+
+      // Update Navigation Buttons State
+      document.getElementById('btn-prev').disabled = index === 0;
+      document.getElementById('btn-prev').style.opacity = index === 0 ? "0.5" : "1";
+
+      if (index === activeQuestions.length - 1) {
+        document.getElementById('btn-next').innerText = "Selesai";
+      } else {
+        document.getElementById('btn-next').innerHTML = `<span>Berikutnya</span> <i class="fa-solid fa-chevron-right"></i>`;
+      }
+
+      // Highlight active grid button
+      updateGridHighlights();
+    }
+
+    // Select Option
+    function selectOption(qIdx, optIdx) {
+      if (examSubmitted) return;
+      userAnswers[qIdx] = optIdx;
+      renderQuestion(qIdx);
+      updateAnsweredCount();
+    }
+
+    // Navigation Jump
+    function jumpToQuestion(idx) {
+      renderQuestion(idx);
+    }
+
+    function navigateQuestion(direction) {
+      const newIndex = currentQIndex + direction;
+      if (newIndex >= 0 && newIndex < activeQuestions.length) {
+        renderQuestion(newIndex);
+      } else if (newIndex >= activeQuestions.length) {
+        confirmSubmit();
+      }
+    }
+
+    function updateGridHighlights() {
+      activeQuestions.forEach((_, idx) => {
+        const btn = document.getElementById(`grid-btn-${idx}`);
+        if (!btn) return;
+
+        const isAnswered = userAnswers[idx] !== undefined;
+        const isCurrent = idx === currentQIndex;
+
+        if (isCurrent) {
+          btn.className = "h-9 font-bold text-xs rounded-lg border flex items-center justify-center transition-all bg-blue-600 text-white border-blue-700 ring-2 ring-blue-300";
+        } else if (isAnswered) {
+          btn.className = "h-9 font-semibold text-xs rounded-lg border flex items-center justify-center transition-all bg-emerald-100 text-emerald-800 border-emerald-400";
+        } else {
+          btn.className = "h-9 font-semibold text-xs rounded-lg border flex items-center justify-center transition-all bg-slate-100 text-slate-700 border-slate-300 hover:bg-slate-200";
+        }
+      });
+    }
+
+    function updateAnsweredCount() {
+      const count = Object.keys(userAnswers).length;
+      document.getElementById('answered-count').innerText = count;
+    }
+
+    // Timer Logic
+    function startTimer() {
+      timerInterval = setInterval(() => {
+        timerSeconds--;
+        
+        let m = Math.floor(timerSeconds / 60);
+        let s = timerSeconds % 60;
+        document.getElementById('timer-display').innerText = 
+          `${m < 10 ? '0' + m : m}:${s < 10 ? '0' + s : s}`;
+
+        if (timerSeconds <= 0) {
+          clearInterval(timerInterval);
+          alert("Waktu pengerjaan Ujian telah habis (50 menit)! Sistem akan mengumpulkan jawaban Anda secara otomatis.");
+          submitExam();
+        }
+      }, 1000);
+    }
+
+    // Anti-Cheat Switch Tab Detection
+    function handleVisibilityChange() {
+      if (document.hidden && !examSubmitted) {
+        // Reset user progress to Q1 & clear previous choices
+        userAnswers = {};
+        currentQIndex = 0;
+        updateAnsweredCount();
+        renderQuestion(0);
+
+        // Show warning popup modal
+        document.getElementById('cheat-modal').classList.remove('hidden');
+      }
+    }
+
+    function closeCheatModal() {
+      document.getElementById('cheat-modal').classList.add('hidden');
+    }
+
+    // Confirm Submit
+    function confirmSubmit() {
+      const answered = Object.keys(userAnswers).length;
+      if (answered < activeQuestions.length) {
+        if (!confirm(`Anda baru menjawab ${answered} dari 50 soal. Yakin ingin mengakhiri dan mengirim nilai sekarang?`)) {
+          return;
+        }
+      } else {
+        if (!confirm("Apakah Anda yakin ingin menyelesaikan ujian ini dan melihat skor akhir?")) {
+          return;
+        }
+      }
+      submitExam();
+    }
+
+    // Submit Exam & Calculate Score
+    function submitExam() {
+      examSubmitted = true;
+      clearInterval(timerInterval);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+
+      // Hide Exam Section, Show Result Section
+      document.getElementById('exam-section').classList.add('hidden');
+      document.getElementById('timer-box').classList.add('hidden');
+      document.getElementById('result-section').classList.remove('hidden');
+
+      // Calculate Score (2 points per correct answer)
+      let correctCount = 0;
+      activeQuestions.forEach((q, idx) => {
+        const chosenOptIdx = userAnswers[idx];
+        if (chosenOptIdx !== undefined && q.options[chosenOptIdx].isCorrect) {
+          correctCount++;
+        }
+      });
+
+      const finalScore = correctCount * 2;
+      const incorrectCount = activeQuestions.length - correctCount;
+
+      document.getElementById('final-score').innerText = finalScore;
+      document.getElementById('correct-count').innerText = correctCount;
+      document.getElementById('incorrect-count').innerText = incorrectCount;
+      document.getElementById('result-student-info').innerHTML = `Nama: <b>${studentName}</b> | Kelas/Jurusan: <b>${studentClass}</b>`;
+
+      // Generate Discussion Section
+      renderDiscussion();
+    }
+
+    // Render Discussions
+    function renderDiscussion() {
+      const container = document.getElementById('discussion-container');
+      container.innerHTML = '';
+
+      const labels = ['A', 'B', 'C', 'D', 'E'];
+
+      activeQuestions.forEach((q, idx) => {
+        const userChoiceIdx = userAnswers[idx];
+        const isUserCorrect = userChoiceIdx !== undefined && q.options[userChoiceIdx].isCorrect;
+
+        const card = document.createElement('div');
+        card.className = `p-4 md:p-5 rounded-xl border ${isUserCorrect ? 'border-emerald-200 bg-emerald-50/30' : 'border-red-200 bg-red-50/30'}`;
+
+        let optionsHtml = '';
+        q.options.forEach((opt, oIdx) => {
+          let badge = '';
+          if (opt.isCorrect) {
+            badge = `<span class="ml-2 text-xs font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">(Jawaban Benar)</span>`;
+          }
+          if (userChoiceIdx === oIdx && !opt.isCorrect) {
+            badge = `<span class="ml-2 text-xs font-bold text-red-700 bg-red-100 px-2 py-0.5 rounded">(Pilihan Anda - Salah)</span>`;
+          }
+
+          optionsHtml += `
+            <div class="text-xs md:text-sm my-1 ${opt.isCorrect ? 'font-semibold text-emerald-800' : 'text-slate-600'}">
+              <b>${labels[oIdx]}.</b> ${opt.text} ${badge}
+            </div>
+          `;
+        });
+
+        card.innerHTML = `
+          <div class="flex items-start justify-between">
+            <span class="text-xs font-bold uppercase px-2.5 py-1 rounded ${isUserCorrect ? 'bg-emerald-600 text-white' : 'bg-red-600 text-white'} mb-2 inline-block">
+              Soal #${idx + 1} - ${isUserCorrect ? 'BENAR (+2)' : 'SALAH (0)'}
+            </span>
+          </div>
+          <p class="font-medium text-slate-800 text-sm md:text-base mb-3">${q.question}</p>
+          <div class="space-y-1 mb-3 pl-2 border-l-2 border-slate-300">
+            ${optionsHtml}
+          </div>
+          <div class="bg-white p-3 rounded-lg border border-slate-200 text-xs text-slate-700 mt-2">
+            <span class="font-bold text-blue-800 block mb-1"><i class="fa-solid fa-lightbulb mr-1 text-amber-500"></i> Pembahasan:</span>
+            ${q.explanation}
+          </div>
+        `;
+
+        container.appendChild(card);
+      });
+    }
+
+    // Download Transcript Report File
+    function downloadReport() {
+      const correct = document.getElementById('correct-count').innerText;
+      const score = document.getElementById('final-score').innerText;
+      
+      let reportText = `====================================================\n`;
+      reportText += `TRANSKRIP HASIL UTS KEWIRAUSAHAAN / PKK (KELAS XII)\n`;
+      reportText += `SMK BINAKARYA MANDIRI\n`;
+      reportText += `====================================================\n\n`;
+      reportText += `Nama Siswa     : ${studentName}\n`;
+      reportText += `Kelas / Jurusan: ${studentClass}\n`;
+      reportText += `Tanggal Ujian  : ${new Date().toLocaleDateString('id-ID')}\n`;
+      reportText += `Jumlah Soal    : 50 Soal HOTS\n`;
+      reportText += `Jawaban Benar  : ${correct} Soal\n`;
+      reportText += `SKOR AKHIR     : ${score} / 100\n\n`;
+      reportText += `====================================================\n`;
+      reportText += `Status         : TERKIRIM & DIVERIFIKASI SISTEM SIMULATOR\n`;
+      reportText += `====================================================\n`;
+
+      const blob = new Blob([reportText], { type: 'text/plain;charset=utf-8' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = `UTS_PKK_${studentName.replace(/\s+/g, '_')}_${studentClass.replace(/\s+/g, '_')}.txt`;
+      link.click();
+    }
+  </script>
+</body>
+</html>
+```eof
+
+### Ringkasan Aplikasi Ujian Simulasi UTS PKK:
+- **Formulir Identitas**: Mewajibkan Nama Siswa dan pilihan Jurusan/Kelas spesifik (DKV 1-4, TKJ 1-13, TKR 1-11, TSM 1-13, TITL 1-4, TAV 1, TPM 1-3, TAB 1-9).
+- **Spesifikasi 50 Soal HOTS (C3-C5)**: Materi mencakup analisis kompetitor, benchmarking, strategi harga, promosi digital, growth mindset, analisis laporan keuangan, analisis SWOT, peluang usaha berbasis jurusan SMK, inovasi & QC.
+- **Sistem Anti-Kecurangan**: Menggunakan *Visibility API*. Jika siswa berpindah tab/aplikasi lain, ujian akan langsung di-reset kembali ke Soal Nomor 1, jawaban sebelumnya dihapus, dan timer tetap berjalan.
+- **Timer 50 Menit & Pengacakan**: Timer countdown otomatis mengirim nilai saat habis. Soal dan Opsi Pilihan diacak (*shuffled*) secara dinamis.
+- **Hasil & Pembahasan**: Menampilkan skor akhir otomatis (Skor Maksimal 100), unduh transkrip nilai, serta pembahasan lengkap per soal di halaman akhir.
